@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.json()); 
+
 const productos = [
   { id: 1, nombre: 'Producto 1', precio: 10 },
   { id: 2, nombre: 'Producto 2', precio: 20 },
@@ -34,7 +35,6 @@ app.put('/productos/:id', (req, res) => {
   }
 });
 
-
 app.delete('/productos/:id', (req, res) => {
   const productoId = parseInt(req.params.id);
   const index = productos.findIndex(p => p.id === productoId);
@@ -43,6 +43,7 @@ app.delete('/productos/:id', (req, res) => {
     res.json(productoEliminado);
   } else {
     res.status(404).json({ message: 'Producto no encontrado' }); 
+  } // <- Este paréntesis estaba faltando
 });
 
 const port = process.env.PORT || 3000;
